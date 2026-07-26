@@ -67,7 +67,7 @@ do
   then
     echo "Building libpng for ${ABI}..."
     cd libpng
-    ./autogen.sh
+    ./autogen.sh || true # some libpng versions don't need/have autogen
     ./configure --host=${TARGET} --prefix="${PREFIX}" --libdir="${PREFIX}/lib/${ABI}" --enable-static --disable-shared
     make clean
     make -j${CORES}
