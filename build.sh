@@ -56,8 +56,8 @@ do
   ZLIB_PREBUILT=$($READLINK -f ../prebuilt/zlib)
 
   export CPPFLAGS="-I${ZLIB_PREBUILT}/include"
-  export CFLAGS="-fPIC -O3 -I${ZLIB_PREBUILT}/include -Wl,-z,max-page-size=16384"
-  export CXXFLAGS="-fPIC -O3 -I${ZLIB_PREBUILT}/include -Wl,-z,max-page-size=16384"
+  export CFLAGS="-fPIC -O3"
+  export CXXFLAGS="-fPIC -O3"
   export LDFLAGS="-L${ZLIB_PREBUILT}/lib/${ABI} -Wl,-z,max-page-size=16384"
 
   export PKG_CONFIG_PATH="${ZLIB_PREBUILT}/lib/${ABI}/pkgconfig"
@@ -67,7 +67,7 @@ do
   then
     echo "Building libpng for ${ABI}..."
     cd libpng
-    ./autogen.sh
+    #./autogen.sh # tagged releases do not need autogen
     ./configure --host=${TARGET} --prefix="${PREFIX}" --libdir="${PREFIX}/lib/${ABI}" --enable-static --disable-shared
     make clean
     make -j${CORES}
