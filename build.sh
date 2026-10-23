@@ -18,7 +18,7 @@ if [ ! -d "libpng" ]
 then
   git clone https://github.com/pnggroup/libpng.git
   cd libpng
-  git checkout v1.6.58
+  git checkout v1.6.59
   cd ..
 fi
 
